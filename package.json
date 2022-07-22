@@ -50,6 +50,7 @@
     "imagemin-mozjpeg": "^9.0.0",
     "imagemin-pngquant": "^9.0.2",
     "imagemin-svgo": "^9.0.0",
+    "lefthook": "^1.0.5",
     "local-ipv4-address": "0.0.2",
     "mini-css-extract-plugin": "^2.4.4",
     "postcss": "^8.4.4",
