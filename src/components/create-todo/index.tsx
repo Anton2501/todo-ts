@@ -10,9 +10,9 @@ function CreateTodo() {
 
     const createTodo = React.useCallback(
         (event: React.MouseEvent<HTMLButtonElement>) => {
-            event.preventDefault();
-            if (value) addTodo(value);
-            updateValue('');
+        event.preventDefault();
+        if (value) addTodo(value);
+        updateValue('');
         },
         [value, addTodo]
     );
@@ -27,7 +27,7 @@ function CreateTodo() {
     return (
         <form className="create-todo">
             <Input
-                placeholder="Write new task here!"
+                placeholder="Write new task here!!!"
                 value={value}
                 onChange={onChange}
                 id="type"
