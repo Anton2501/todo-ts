@@ -3,15 +3,15 @@
 .input {
     display: block;
     width: 100%;
-    padding: 0 32px;
+    height: 56px;
     margin-bottom: 32px;
-    border: 2px solid #ccc;
+    padding: 0 32px;
     font-size: 16px;
     line-height: 52px;
-    height: 56px;
+    border: 2px solid #ccc;
     border-radius: 8px;
-    transition: all 0.2s ease;
     outline: none;
+    transition: all 0.2s ease;
 
     &:focus {
         border: 2px solid $primary;

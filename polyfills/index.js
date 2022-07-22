@@ -1,11 +1,12 @@
-'use strict';
-
 // import 'es5-shim';
 // import 'react-app-polyfill/ie9';
 // import 'react-app-polyfill/ie11';
 // import 'react-app-polyfill/stable';
 // import 'polyfill-array-includes';
 import 'ie-array-find-polyfill';
+
+('use strict');
+
 // Object.keys = objectKeys;
 
 if (typeof Promise === 'undefined') {

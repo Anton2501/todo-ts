@@ -17,11 +17,11 @@
         display: block;
         width: 24px;
         height: 24px;
-        border-radius: 4px;
         background-color: $color-secondary;
+        border-radius: 4px;
+        cursor: pointer;
         overflow: hidden;
         transition: background-color ease 0.2s;
-        cursor: pointer;
     }
 
     &__square .icon {

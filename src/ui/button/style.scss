@@ -3,20 +3,20 @@
 .button {
     display: inline-block;
     width: 100%;
-    text-align: center;
-    font-style: normal;
-    font-weight: 700;
-    letter-spacing: 0;
-    font-family: inherit;
     padding: 16px 36px;
     font-size: 17px;
     font-size: 16px;
     line-height: 24px;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
+    font-weight: 700;
     color: #fff;
     background-color: $primary;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-align: center;
+    font-style: normal;
+    letter-spacing: 0;
+    font-family: inherit;
     transition: background-color ease 0.1s;
 
     span {
