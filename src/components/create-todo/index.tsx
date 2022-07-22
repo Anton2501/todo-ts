@@ -27,7 +27,7 @@ function CreateTodo() {
     return (
         <form className="create-todo">
             <Input
-                placeholder="Write new task here"
+                placeholder="Write new task here!"
                 value={value}
                 onChange={onChange}
                 id="type"
