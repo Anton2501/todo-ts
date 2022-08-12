@@ -1,3 +1,4 @@
+const path = require('path');
 const baseConfig = require('./base');
 const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
