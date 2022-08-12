@@ -10,60 +10,77 @@ type Todo = {
 interface ITodoContext {
     list: Todo[];
     addTodo: (text: string) => void;
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-    onDelete: (id: string) => void;
-    onEdit: (text: string, id: string) => void;
-    leaveOnlyChecked: boolean;
-    setLeaveOnlyChecked: (val: boolean) => void;
-    headerClickedTimes: number;
-    countClickHeader: (val: number) => void;
+    onChangeTodo: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onDeleteTodo: (id: string) => void;
+    onEditTodo: (text: string, id: string) => void;
+    isCompletedHidden: boolean;
+    setHideCompleted: (val: boolean) => void;
+    sorting: string;
+    updateSorting: (val: string) => void;
 }
+
+export const sortState = {
+    BY_DATE: 'BY_CREATION_DATE',
+    ALPHABET: 'FROM_A_TO_Z',
+    ALPHABET_REVERSE: 'FROM_Z_TO_A',
+};
 
 export const TodoContext = React.createContext<ITodoContext>({
     list: [],
     addTodo: () => undefined,
-    onChange: () => undefined,
-    onDelete: () => undefined,
-    onEdit: () => undefined,
-    leaveOnlyChecked: false,
-    setLeaveOnlyChecked: () => undefined,
-    headerClickedTimes: 0,
-    countClickHeader: () => undefined,
+    onChangeTodo: () => undefined,
+    onDeleteTodo: () => undefined,
+    onEditTodo: () => undefined,
+    isCompletedHidden: false,
+    setHideCompleted: () => undefined,
+    sorting: sortState.BY_DATE,
+    updateSorting: () => undefined,
 });
 
 TodoContext.displayName = 'TodoContext';
 
+export function useTodos() {
+    const context = React.useContext(TodoContext);
+    if (!context) {
+        throw new Error(`useTodos must be used within a TodoProvider`);
+    }
+    return context;
+}
+
 export function TodoProvider({ children }: { children: React.ReactNode }) {
     const localState = JSON.parse(localStorage.getItem('todo-list') || '[]');
     const [list, updateList] = React.useState<Todo[]>(localState);
-    const [leaveOnlyChecked, setLeaveOnlyChecked] =
-        React.useState<boolean>(false);
+    const [isCompletedHidden, setHideCompleted] = React.useState<boolean>(false);
+    // const [leaveOnlyChecked, setLeaveOnlyChecked] =
+    //     React.useState<boolean>(false);
 
-    const localHeaderClickCounter = +JSON.parse(
-        localStorage.getItem('headerClickedCounter') || '0'
-    );
-    const [headerClickedTimes, countClickHeader] = React.useState<number>(
-        localHeaderClickCounter
-    );
+    // const localHeaderClickCounter = +JSON.parse(
+    //     localStorage.getItem('headerClickedCounter') || '0'
+    // );
+    // const [headerClickedTimes, countClickHeader] = React.useState<number>(
+    //     localHeaderClickCounter
+    // );
 
-    const clickHeaderTimesRef = React.useRef(0);
+    // const clickHeaderTimesRef = React.useRef(0);
+
+    const localSorting = JSON.parse(localStorage.getItem('sorting')) || `${sortState.BY_DATE}`;
+    const [sorting, updateSorting] = React.useState<string>(localSorting);
+    const sortingRef = React.useRef<string>(sortState.BY_DATE);
 
     React.useEffect(() => {
-        if (headerClickedTimes === 0 && clickHeaderTimesRef.current !== 0) {
+        if (sorting === sortState.BY_DATE && sortingRef.current !== sortState.BY_DATE) {
             updateList(
-                [...list]
-                    .sort((a, b) => {
-                        if (a.created < b.created) {
-                            return -1;
-                        }
-                        return 1;
-                    })
-                    .reverse()
+                [...list].sort((a, b) => {
+                    if (a.created < b.created) {
+                        return -1;
+                    }
+                    return 1;
+                })
             );
-            clickHeaderTimesRef.current = 0;
+            sortingRef.current = sortState.BY_DATE;
         }
 
-        if (headerClickedTimes === 1 && clickHeaderTimesRef.current !== 1) {
+        if (sorting === sortState.ALPHABET && sortingRef.current !== sortState.ALPHABET) {
             updateList(
                 [...list].sort((a, b) => {
                     if (a.label < b.label) {
@@ -72,10 +89,10 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
                     return 1;
                 })
             );
-            clickHeaderTimesRef.current = 1;
+            sortingRef.current = sortState.ALPHABET;
         }
 
-        if (headerClickedTimes === 2 && clickHeaderTimesRef.current !== 2) {
+        if (sorting === sortState.ALPHABET_REVERSE && sortingRef.current !== sortState.ALPHABET_REVERSE) {
             updateList(
                 [...list]
                     .sort((a, b) => {
@@ -86,9 +103,9 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
                     })
                     .reverse()
             );
-            clickHeaderTimesRef.current = 2;
+            sortingRef.current = sortState.ALPHABET_REVERSE;
         }
-    }, [headerClickedTimes, list]);
+    }, [sorting, list]);
 
     const addTodo = React.useCallback(
         (text: string) => {
@@ -104,7 +121,7 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
         [list, updateList]
     );
 
-    const onChange = React.useCallback(
+    const onChangeTodo = React.useCallback(
         (e: React.ChangeEvent<HTMLInputElement>) => {
             const updatedList = list.map((item) => {
                 if (e.target.id === item.id) {
@@ -117,7 +134,7 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
         [list, updateList]
     );
 
-    const onDelete = React.useCallback(
+    const onDeleteTodo = React.useCallback(
         (id: string) => {
             const arr = [...list];
             const index = arr.findIndex((item) => id === item.id);
@@ -127,7 +144,7 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
         [list, updateList]
     );
 
-    const onEdit = React.useCallback(
+    const onEditTodo = React.useCallback(
         (text: string, id: string) => {
             const updatedList = list.map((item) => {
                 if (id === item.id) {
@@ -145,29 +162,35 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
     }, [list]);
 
     React.useEffect(() => {
-        localStorage.setItem(
-            'headerClickedCounter',
-            JSON.stringify(headerClickedTimes)
-        );
-    }, [headerClickedTimes]);
+        localStorage.setItem('sorting', JSON.stringify(sorting));
+    }, [sorting]);
 
-    return (
-        <TodoContext.Provider
-            value={{
-                list,
-                addTodo,
-                onChange,
-                onDelete,
-                onEdit,
-                leaveOnlyChecked,
-                setLeaveOnlyChecked,
-                headerClickedTimes,
-                countClickHeader,
-            }}
-        >
-            {children}
-        </TodoContext.Provider>
+    const value = React.useMemo(
+        () => ({
+            list,
+            addTodo,
+            onChangeTodo,
+            onDeleteTodo,
+            onEditTodo,
+            isCompletedHidden,
+            setHideCompleted,
+            sorting,
+            updateSorting,
+        }),
+        [
+            list,
+            addTodo,
+            onChangeTodo,
+            onDeleteTodo,
+            onEditTodo,
+            isCompletedHidden,
+            setHideCompleted,
+            sorting,
+            updateSorting,
+        ]
     );
+
+    return <TodoContext.Provider value={value}>{children}</TodoContext.Provider>;
 }
 
 const def = {

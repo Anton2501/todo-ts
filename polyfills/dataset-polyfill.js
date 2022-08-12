@@ -21,9 +21,7 @@ Element.prototype.removeDataAttribute = function (name) {
 };
 Element.prototype.setDataAttributes = function (items) {
     if (items instanceof Object) {
-        for (var attr in items)
-            if (items.hasOwnProperty(attr))
-                this.setDataAttribute(attr, items[attr]);
+        for (var attr in items) if (items.hasOwnProperty(attr)) this.setDataAttribute(attr, items[attr]);
     }
 };
 if (!Element.prototype.__lookupGetter__('dataset')) {
@@ -53,19 +51,11 @@ if (!Element.prototype.__lookupGetter__('dataset')) {
                 this.attributes[attr].name &&
                 /^data-[a-z_\-\d]*$/i.test(this.attributes[attr].name)
             ) {
-                var attrName = toCamelCase(
-                        this.attributes[attr].name.substr(5)
-                    ),
+                var attrName = toCamelCase(this.attributes[attr].name.substr(5)),
                     attrVal = this.attributes[attr].value;
                 try {
-                    HTML5_DOMStringMap.__defineGetter__(
-                        attrName,
-                        lambda(attrVal || '')
-                    );
-                    HTML5_DOMStringMap.__defineSetter__(
-                        attrName,
-                        dataSetterFunc(this, attrName)
-                    );
+                    HTML5_DOMStringMap.__defineGetter__(attrName, lambda(attrVal || ''));
+                    HTML5_DOMStringMap.__defineSetter__(attrName, dataSetterFunc(this, attrName));
                 } catch (e) {
                     HTML5_DOMStringMap[attrName] = attrVal;
                 } // if accessors are not working

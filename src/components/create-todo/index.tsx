@@ -1,18 +1,18 @@
 import React from 'react';
 import Button from '~ui/button';
 import Input from '~ui/input';
-import { TodoContext } from '~todo-context/index';
+import { useTodos } from '~todo-context/index';
 import './style.scss';
 
 function CreateTodo() {
-    const [value, updateValue] = React.useState<string>('');
-    const { addTodo } = React.useContext(TodoContext);
+    const [value, updateValue] = React.useState('');
+    const { addTodo } = useTodos();
 
     const createTodo = React.useCallback(
-        (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        if (value) addTodo(value);
-        updateValue('');
+        (event: React.MouseEvent<HTMLInputElement>) => {
+            event.preventDefault();
+            if (value) addTodo(value);
+            updateValue('');
         },
         [value, addTodo]
     );
@@ -27,12 +27,13 @@ function CreateTodo() {
     return (
         <form className="create-todo">
             <Input
-                placeholder="Write new task here!!!"
+                placeholder="Write new task here..."
                 value={value}
                 onChange={onChange}
                 id="type"
+                testId="todo-input"
             />
-            <Button type="submit" onClick={createTodo} disabled={!value}>
+            <Button type="submit" onClick={createTodo} disabled={!value} testId="todo-create-btn">
                 Create
             </Button>
         </form>

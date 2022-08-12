@@ -6,4 +6,5 @@ export interface IButtonProps {
     type?: 'button' | 'submit' | 'reset';
     disabled: boolean;
     children: ReactNode;
+    testId?: string;
 }

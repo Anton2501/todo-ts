@@ -6,10 +6,7 @@ const SimpleProgressPlugin = require('webpack-simple-progress-plugin');
 const barColor = '#ff7f50';
 
 module.exports = {
-    entry: [
-        require.resolve('../polyfills'),
-        path.resolve(__dirname, '../src/index.tsx'),
-    ],
+    entry: [require.resolve('../polyfills'), path.resolve(__dirname, '../src/index.tsx')],
     output: {
         path: path.resolve(__dirname, '../build'),
         filename: 'js/main.[chunkhash:4].js',
@@ -32,12 +29,7 @@ module.exports = {
         rules: [
             {
                 test: /\.(scss|sass|css)?$/,
-                use: [
-                    'style-loader',
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader',
-                ],
+                use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
             },
             {
                 test: /\.(js|jsx|tsx|ts)?$/,
@@ -60,11 +52,7 @@ module.exports = {
             inject: 'body',
         }),
         new SimpleProgressPlugin({
-            messageTemplate: [
-                ':bar',
-                chalk.hex(barColor)(':percent'),
-                chalk.hex(barColor)(':msg'),
-            ].join(' '),
+            messageTemplate: [':bar', chalk.hex(barColor)(':percent'), chalk.hex(barColor)(':msg')].join(' '),
             progressOptions: {
                 complete: chalk.bgHex(barColor)(' '),
                 incomplete: chalk.bgBlack(' '),

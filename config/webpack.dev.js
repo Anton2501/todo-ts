@@ -28,7 +28,9 @@ module.exports = merge(baseConfig, {
         static: {
             directory: path.join(__dirname, '../public'),
         },
+        allowedHosts: 'auto',
         compress: true,
+        historyApiFallback: true,
         open: false,
         port: 3000,
         client: {

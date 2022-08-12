@@ -8,9 +8,8 @@
     font-stretch: normal;
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
-        Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-        sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Fira Sans',
+        'Droid Sans', 'Helvetica Neue', sans-serif;
     -moz-osx-font-smoothing: grayscale;
 }
 
@@ -78,8 +77,8 @@ h1 {
     line-height: 28px;
     @media (min-width: $desktop-breakpoint) {
         font-size: 50px;
-        line-height: 56px;
         font-weight: 400;
+        line-height: 56px;
     }
 }
 
@@ -88,8 +87,8 @@ h2 {
     line-height: 24px;
     @media (min-width: $desktop-breakpoint) {
         font-size: 44px;
-        line-height: 48px;
         font-weight: 400;
+        line-height: 48px;
     }
 }
 
@@ -98,8 +97,8 @@ h3 {
     line-height: 24px;
     @media (min-width: $desktop-breakpoint) {
         font-size: 36px;
-        line-height: 40px;
         font-weight: 400;
+        line-height: 40px;
     }
 }
 
@@ -108,8 +107,8 @@ h4 {
     line-height: 20px;
     @media (min-width: $desktop-breakpoint) {
         font-size: 28px;
-        line-height: 32px;
         font-weight: 400;
+        line-height: 32px;
     }
 }
 
@@ -118,15 +117,15 @@ h5 {
     line-height: 20px;
     @media (min-width: $desktop-breakpoint) {
         font-size: 24px;
-        line-height: 28px;
         font-weight: 400;
+        line-height: 28px;
     }
 }
 
 h6 {
     font-size: 20px;
-    line-height: 24px;
     font-weight: 400;
+    line-height: 24px;
 }
 
 .body-xl-bold,
@@ -144,20 +143,20 @@ h6 {
 
 .body-xl-bold {
     font-size: 19px;
-    line-height: 28px;
     font-weight: 800;
+    line-height: 28px;
 }
 
 .body-xl {
     font-size: 19px;
-    line-height: 28px;
     font-weight: 400;
+    line-height: 28px;
 }
 
 .body-l-bold {
     font-size: 17px;
-    line-height: 28px;
     font-weight: 800;
+    line-height: 28px;
 }
 
 .body-l {
@@ -167,8 +166,8 @@ h6 {
 
 .body-m-bold {
     font-size: 16px;
-    line-height: 24px;
     font-weight: 800;
+    line-height: 24px;
 }
 
 .body-m {
@@ -178,8 +177,8 @@ h6 {
 
 .body-s-bold {
     font-size: 13px;
-    line-height: 20px;
     font-weight: 800;
+    line-height: 20px;
 }
 
 .body-s {
@@ -189,8 +188,8 @@ h6 {
 
 .body-xs-bold {
     font-size: 11px;
-    line-height: 16px;
     font-weight: 800;
+    line-height: 16px;
 }
 
 .body-xs {
@@ -199,6 +198,5 @@ h6 {
 }
 
 code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-        monospace;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

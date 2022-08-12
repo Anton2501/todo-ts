@@ -8,6 +8,7 @@ function App() {
     return (
         <div className="app">
             <TodoProvider>
+                <h1 className="app__title">Todo List</h1>
                 <CreateTodo />
                 <TodosList />
             </TodoProvider>

@@ -1,8 +1,5 @@
 {
-    "extends": [
-        "stylelint-config-standard-scss",
-        "stylelint-config-prettier-scss"
-    ],
+    "extends": ["stylelint-config-standard-scss", "stylelint-config-prettier-scss"],
     "plugins": ["stylelint-order"],
     "rules": {
         "selector-class-pattern": null,
@@ -37,9 +34,10 @@
             "padding-right",
             "padding-bottom",
             "padding-left",
+            "text-align",
             "font-size",
-            "line-height",
             "font-weight",
+            "line-height",
             "color",
             "background",
             "background-color",
@@ -55,8 +53,6 @@
             "border-left",
             "border-radius",
             "cursor",
-            "outline",
-            "outline-color",
             "z-index"
         ]
     }

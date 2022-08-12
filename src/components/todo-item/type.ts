@@ -4,7 +4,8 @@ export interface ITodoItem {
     id: string;
     label: string;
     isChecked: boolean;
-    onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-    onDelete: (id: string) => void;
-    onEdit: (text: string, id: string) => void;
+    onChangeTodo: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    onDeleteTodo: (id: string) => void;
+    onEditTodo: (text: string, id: string) => void;
+    created: number;
 }

@@ -3,6 +3,7 @@ const { merge } = require('webpack-merge');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const ImageMinimizerPlugin = require('image-minimizer-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 // const { extendDefaultPlugins } = require('svgo');
 
 // const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -18,12 +19,7 @@ module.exports = merge(baseConfig, {
         rules: [
             {
                 test: /\.(scss|sass|css)?$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    'sass-loader',
-                ],
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
             },
         ],
     },
@@ -62,5 +58,13 @@ module.exports = merge(baseConfig, {
         }),
         // new BundleAnalyzerPlugin(),
         new CleanWebpackPlugin(),
+        new CopyPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, '../public/favicon.ico'),
+                    to: path.resolve(__dirname, '../build/favicon.ico'),
+                },
+            ],
+        }),
     ],
 });

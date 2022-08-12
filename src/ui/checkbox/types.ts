@@ -5,4 +5,5 @@ export interface ICheckboxProps {
     className?: string;
     onChange: (event: ChangeEvent<HTMLInputElement>) => void;
     id: string;
+    testId?: string;
 }

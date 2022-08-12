@@ -8,4 +8,5 @@ export interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {
     id: string;
     type?: string;
     placeholder?: string;
+    testId?: string;
 }

@@ -1,12 +1,12 @@
 {
     "root": true,
     "parser": "@typescript-eslint/parser",
-    "plugins": ["@typescript-eslint"],
+    "plugins": ["@typescript-eslint", "react", "testing-library", "jest-dom"],
     "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:react-hooks/recommended",
         "react-app",
+        "plugin:react-hooks/recommended",
         "plugin:jsx-a11y/recommended"
     ],
     "parserOptions": {
@@ -24,6 +24,7 @@
         }
     },
     "rules": {
+        "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "warn"
     }
 }

@@ -16,8 +16,8 @@
 
     &__action-btn {
         padding: 0 8px;
-        line-height: 24px;
         font-weight: 700;
+        line-height: 24px;
         color: $primary;
         background-color: transparent;
         border: none;
@@ -47,6 +47,19 @@
 
         &:focus {
             border: none;
+        }
+    }
+
+    &__created {
+        display: none;
+        flex-shrink: 0;
+        width: 130px;
+        text-align: right;
+        font-size: 12px;
+        line-height: 24px;
+        color: #000;
+        @media (min-width: $ipad-portrait) {
+            display: block;
         }
     }
 
