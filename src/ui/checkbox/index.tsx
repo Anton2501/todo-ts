@@ -1,6 +1,4 @@
-/* eslint-disable jsx-a11y/no-noninteractive-tabindex */
-
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable jsx-a11y/no-noninteractive-tabindex, jsx-a11y/no-noninteractive-element-interactions */
 import PropTypes from 'prop-types';
 import React from 'react';
 import { IconCheck } from './icon';

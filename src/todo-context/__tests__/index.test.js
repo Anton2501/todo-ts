@@ -3,7 +3,7 @@ import userEvent from '@testing-library/user-event';
 import { act, create } from 'react-test-renderer';
 import CreateTodo from '~components/create-todo';
 import TodosList from '~components/todos-list';
-import { TodoProvider, sortState } from './index';
+import { TodoProvider, sortState } from '../index';
 
 const localStorageMock = (function () {
     let store = {};

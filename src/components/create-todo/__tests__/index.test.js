@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act, create } from 'react-test-renderer';
-import CreateTodo from './index';
+import CreateTodo from '../index';
 
 describe('CreateTodo', () => {
     test('matches snapshot', () => {

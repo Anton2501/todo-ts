@@ -1,6 +1,6 @@
 import React from 'react';
 import { act, create } from 'react-test-renderer';
-import TodosList from './index';
+import TodosList from '../index';
 
 describe('TodosList', () => {
     test('matches snapshot', () => {

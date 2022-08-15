@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act, create } from 'react-test-renderer';
-import Input from './index';
+import Input from '../index';
 
 const props = {
     checked: false,

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import React from 'react';
 import { act, create } from 'react-test-renderer';
-import Checkbox from './index';
+import Checkbox from '../index';
 
 const props = {
     checked: false,

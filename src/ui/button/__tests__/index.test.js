@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { act, create } from 'react-test-renderer';
-import Button from './index';
+import Button from '../index';
 
 const props = {
     className: 'test',
