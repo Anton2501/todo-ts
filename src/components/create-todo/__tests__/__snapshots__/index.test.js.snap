@@ -7,7 +7,7 @@ exports[`CreateTodo matches snapshot 1`] = `
   <input
     className="input"
     data-testid="todo-input"
-    id="type"
+    id="new-todo-input"
     onChange={[Function]}
     placeholder="Write new task here..."
     type="text"
@@ -20,7 +20,7 @@ exports[`CreateTodo matches snapshot 1`] = `
     onClick={[Function]}
     type="submit"
   >
-    Create
+    Add
   </button>
 </form>
 `;

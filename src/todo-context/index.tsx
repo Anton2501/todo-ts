@@ -158,7 +158,8 @@ export function TodoProvider({ children }: { children: React.ReactNode }) {
     );
 
     React.useEffect(() => {
-        localStorage.setItem('todo-list', JSON.stringify(list));
+        const val = list.length ? list : null;
+        localStorage.setItem('todo-list', JSON.stringify(val));
     }, [list]);
 
     React.useEffect(() => {

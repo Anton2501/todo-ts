@@ -5,9 +5,11 @@ import { act, create } from 'react-test-renderer';
 import TodoItem from '../index';
 
 const props = {
-    id: 'todo-item',
-    label: 'Test',
-    isChecked: false,
+    data: {
+        id: 'todo-item',
+        label: 'Test',
+        isCompleted: false,
+    },
     onChangeTodo: () => null,
     onDeleteTodo: () => null,
     onEditTodo: () => null,
@@ -15,7 +17,22 @@ const props = {
 
 function TestWrapper() {
     const [checked, setChecked] = React.useState();
-    return <TodoItem {...props} isChecked={checked} onChange={(e) => setChecked(e.target.checked)} />;
+
+    const props = React.useMemo(
+        () => ({
+            data: {
+                id: 'todo-item',
+                label: 'Test',
+                isCompleted: checked,
+            },
+            onChangeTodo: () => null,
+            onDeleteTodo: () => null,
+            onEditTodo: () => null,
+        }),
+        [checked]
+    );
+
+    return <TodoItem {...props} onChange={(e) => setChecked(e.target.checked)} />;
 }
 
 describe('TodoItem', () => {

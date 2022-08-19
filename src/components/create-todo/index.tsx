@@ -30,11 +30,11 @@ function CreateTodo() {
                 placeholder="Write new task here..."
                 value={value}
                 onChange={onChange}
-                id="type"
+                id="new-todo-input"
                 testId="todo-input"
             />
             <Button type="submit" onClick={createTodo} disabled={!value} testId="todo-create-btn">
-                Create
+                Add
             </Button>
         </form>
     );

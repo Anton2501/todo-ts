@@ -2,13 +2,14 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import Fade from 'react-reveal/Fade';
-import TextareaAutosize from 'react-textarea-autosize';
 import Checkbox from '~ui/checkbox';
 import Label from '~ui/label';
+import TextareaAutosize from '~ui/textarea-autosize';
 import './style.scss';
-import { ITodoItem } from './type';
+import { ITodoData, ITodoItem } from './type';
 
-function TodoItem({ id, label, isChecked, onChangeTodo, onDeleteTodo, onEditTodo, created }: ITodoItem) {
+function TodoItem({ data, onChangeTodo, onDeleteTodo, onEditTodo }: ITodoItem) {
+    const { id, label, isCompleted, created }: ITodoData = data;
     const [editing, setEditing] = React.useState(false);
     const [value, setValue] = React.useState(label);
 
@@ -33,11 +34,11 @@ function TodoItem({ id, label, isChecked, onChangeTodo, onDeleteTodo, onEditTodo
         <Fade bottom>
             <div className="todo-item" data-testid="todo-item">
                 <div className="todo-item__check-group">
-                    <Checkbox checked={isChecked} onChange={onChangeTodo} id={id} testId={`${label}-cb`} />
+                    <Checkbox checked={isCompleted} onChange={onChangeTodo} id={id} testId={`${label}-cb`} />
                     {editing ? (
                         <TextareaAutosize
                             value={value}
-                            onChange={(e) => setValue(e.target.value)}
+                            onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => setValue(e.target.value)}
                             onBlur={onBlurInput}
                             id={id}
                             className="todo-item__input"
@@ -76,13 +77,16 @@ function TodoItem({ id, label, isChecked, onChangeTodo, onDeleteTodo, onEditTodo
 }
 
 TodoItem.propTypes = {
-    id: PropTypes.string,
-    isChecked: PropTypes.bool,
-    label: PropTypes.string,
+    data: PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        isCompleted: PropTypes.bool,
+        label: PropTypes.string,
+        created: PropTypes.number,
+    }),
     onChangeTodo: PropTypes.func,
     onDeleteTodo: PropTypes.func,
     onEditTodo: PropTypes.func,
-    created: PropTypes.number,
+    testId: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 export default TodoItem;

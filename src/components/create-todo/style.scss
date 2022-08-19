@@ -17,7 +17,7 @@
     .button {
         @media (min-width: $ipad-portrait) {
             flex-shrink: 0;
-            width: 130px;
+            width: auto;
             margin-left: 16px;
         }
     }

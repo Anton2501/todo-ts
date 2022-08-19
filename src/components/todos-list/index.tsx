@@ -6,15 +6,9 @@ import Fade from 'react-reveal/Fade';
 import Checkbox from '~ui/checkbox';
 import Label from '~ui/label';
 import TodoItem from '~components/todo-item';
+import { ITodoData } from '~components/todo-item/type';
 import { sortState, useTodos } from '~todo-context/index';
 import './style.scss';
-
-type TodoItemParams = {
-    id: string;
-    label: string;
-    isCompleted: boolean;
-    created: number;
-};
 
 function TodosList(): JSX.Element {
     const {
@@ -68,34 +62,30 @@ function TodosList(): JSX.Element {
                 </h4>
             )}
             {!isCompletedHidden &&
-                list.map(({ id, label, isCompleted, created }: TodoItemParams) => {
+                list.map((todo: ITodoData) => {
                     return (
                         <TodoItem
-                            key={id}
-                            id={id}
-                            label={label}
-                            isChecked={isCompleted}
+                            key={todo.id}
                             onChangeTodo={onChangeTodo}
                             onDeleteTodo={onDeleteTodo}
                             onEditTodo={onEditTodo}
-                            created={created}
+                            testId={todo.id}
+                            data={todo}
                         />
                     );
                 })}
             {isCompletedHidden &&
                 list
                     .filter(({ isCompleted }: { isCompleted: boolean }) => !isCompleted)
-                    .map(({ id, label, isCompleted, created }: TodoItemParams) => {
+                    .map((todo: ITodoData) => {
                         return (
                             <TodoItem
-                                key={id}
-                                id={id}
-                                label={label}
-                                isChecked={isCompleted}
+                                key={todo.id}
                                 onChangeTodo={onChangeTodo}
                                 onDeleteTodo={onDeleteTodo}
                                 onEditTodo={onEditTodo}
-                                created={created}
+                                testId={todo.id}
+                                data={todo}
                             />
                         );
                     })}
